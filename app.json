@@ -1,0 +1,17 @@
+{
+  "name": "cuttheq",
+  "displayName": "cuttheq",
+  "expo": {
+    "name": "cuttheq",
+    "slug": "cuttheq",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
