@@ -3,10 +3,10 @@ import { StyleSheet, View } from 'react-native';
 
 import Map from '../components/Map';
 
-export default function MapScreen() {
+export default function MapScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Map />
+      <Map navigation={navigation} />
     </View>
   );
 }

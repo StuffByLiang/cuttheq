@@ -1,9 +1,10 @@
 import React from 'react';
-import MapView, { Marker } from 'react-native-maps';
-import { StyleSheet, Dimensions } from 'react-native';
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
+import { StyleSheet, Dimensions, View, Text, Button } from 'react-native';
+import DetailsBottomSheet from './DetailsBottomSheet';
 
 export interface MapProps {
-
+  navigation: any
 }
 
 export interface MapState {
@@ -38,25 +39,42 @@ export default class Map extends React.Component<MapProps, MapState> {
   
   render() {
     let { markers } = this.state;
+    let { navigation } = this.props;
     return (
-      <MapView 
-        style={styles.mapStyle}
-        initialRegion={{
-          latitude: 49.264788,
-          longitude: -123.252812,
-          latitudeDelta: 0.007,
-          longitudeDelta: 0.007,
-        }}
-      >
-        {markers.map((marker, i: Number) => (
-          <Marker
-            key= {i.toString()}
-            coordinate={marker.latlng}
-            title={marker.title}
-            description={marker.description}
-          />
-        ))}
-      </MapView>
+      <>
+        <DetailsBottomSheet />
+        <MapView 
+        // provider={PROVIDER_GOOGLE}
+          style={styles.mapStyle}
+          initialRegion={{
+            latitude: 49.264788,
+            longitude: -123.252812,
+            latitudeDelta: 0.007,
+            longitudeDelta: 0.007,
+          }}
+        >
+          {markers.map((marker, i: Number) => (
+            <Marker
+              key= {i.toString()}
+              coordinate={marker.latlng}
+              title={marker.title}
+              description={marker.description}
+            >
+              <Callout>
+                <View>
+                  <Text style={styles.title}>{marker.title}</Text>
+                  <Text>{marker.description}</Text>
+                  <Text>Estimated Waiting time: 5 min</Text>
+                  <Button
+                    title="Go to Details"
+                    onPress={() => {console.log('clicked', navigation); navigation.navigate('Details')}}
+                  />
+                </View>
+              </Callout>
+            </Marker>
+          ))}
+        </MapView>
+      </>
     );
   }
 }
@@ -66,4 +84,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  }
 });

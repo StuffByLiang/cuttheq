@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, View} from 'react-native';
 
 import MapScreen from './screens/MapScreen';
+import DetailsScreen from './screens/DetailsScreen';
 
 const Stack = createStackNavigator();
 
@@ -14,8 +15,9 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="Map" component={MapScreen} />
+          <Stack.Navigator initialRouteName="Map">
+            <Stack.Screen options={{headerShown: false}} name="Map" component={MapScreen} />
+            <Stack.Screen options={{headerShown: false}} name="Details" component={DetailsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
