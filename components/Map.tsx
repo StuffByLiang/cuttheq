@@ -1,7 +1,7 @@
 import React from 'react';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { StyleSheet, Dimensions, View, Text, Button } from 'react-native';
-import DetailsBottomSheet from './DetailsBottomSheet';
+import DetailsBottomSheet from './DetailsBottomSheet/DetailsBottomSheet';
 
 export interface MapProps {
   navigation: any
@@ -27,11 +27,19 @@ export default class Map extends React.Component<MapProps, MapState> {
       markers: [
         {
           latlng: {
-            latitude: 49.2656154,
-            longitude: -123.2543038
+            latitude: 49.2656312,
+            longitude: -123.2541892
           },
           title: "Tim Hortons",
           description: "Get your Coffee and donuts"
+        },
+        {
+          latlng: {
+            latitude: 49.2658526,
+            longitude: -123.2546264
+          },
+          title: "Triple O's",
+          description: "Some nice hamburgers"
         }
       ]
     };
